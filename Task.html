@@ -3,8 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BOGO Offer </title>
+  <title>BOGO Offer</title>
   <style>
+  
+  	/* Style the custom radio button */
+/* Custom Radio Button */
+.custom-radio {
+  appearance: none; /* Remove default styling */
+  width: 14px;  /* Regular size */
+  height: 14px;  /* Regular size */
+  border: 2px solid #FF6B99; /* Outer border color */
+  border-radius: 50%; /* Circular shape */
+  background-color: white; /* White inner area by default */
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Checked state */
+.custom-radio:checked {
+  border-color: #FF6B99; /* Border color when checked */
+}
+
+/* Inner circle when checked */
+.custom-radio:checked::after {
+  content: "";
+  width: 8px; /* Smaller inner circle size */
+  height: 8px; /* Smaller inner circle size */
+  background-color: #FF6B99; /* Inner circle color */
+  border-radius: 50%; /* Circular shape */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the inner circle */
+}
+
     /* General Styles */
     body {
       font-family: Arial, sans-serif;
@@ -25,7 +58,7 @@
     }
 
     /* Header */
-      .header {
+    .header {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -40,7 +73,7 @@
     .header::before,
     .header::after {
       content: '';
-      width: calc(30% - 30px); 
+      width: calc(30% - 30px);
       height: 1px;
       background-color: #ccc;
       margin: 0 10px;
@@ -59,7 +92,7 @@
     .option input[type="radio"] {
       position: absolute;
       left: 10px;
-      top: 10px;
+      top: 16px;
       accent-color: #ff6b99;
       transform: scale(1.2);
     }
@@ -103,37 +136,22 @@
     }
 
     /* Most Popular Tag */
+    .most-popular {
+      position: absolute;
+      top: -10px;
+      right: 10px;
+      background-color: #ff6b82;
+      color: white;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 5px 5px 0 0;
+      line-height: 1;
+      text-transform: uppercase;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-	
-	.most-popular {
-  position: absolute; /* Position it relative to its container */
-  top: -10px; /* Adjust to float above the box */
-  right: 10px; /* Align to the right side */
-  background-color: #ff6b82; /* Background color */
-  color: white; /* Text color */
-  font-size: 10px; /* Adjust font size */
-  font-weight: bold;
-  padding: 5px 10px; /* Add padding for better spacing */
-  border-radius: 5px 5px 0 0; /* Top rounded corners */
-  line-height: 1; /* Compact line height */
-  text-transform: uppercase; /* Capitalize text */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
-}
-
-/* Add a triangular cut effect on the bottom */
-.most-popular::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background-color: white; /* Matches background to create cut effect */
-  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
-}
-
-
-    /* Size and Colour Dropdowns */
+    /* Sizes Section */
     .sizes {
       display: flex;
       flex-direction: column;
@@ -159,7 +177,7 @@
       padding: 5px;
       border: 1px solid #ddd;
       border-radius: 5px;
-	  width:20%;
+      width: 20%;
     }
 
     /* Footer Section */
@@ -179,6 +197,7 @@
     .total {
       font-size: 1rem;
       font-weight: bold;
+	   margin-left: 10px;
     }
 
     /* Add to Cart Button */
@@ -204,41 +223,6 @@
       font-size: 0.8rem;
       color: #aaa;
     }
-	
-	/* Style the custom radio button */
-/* Custom Radio Button */
-.custom-radio {
-  appearance: none; /* Remove default styling */
-  width: 14px;  /* Regular size */
-  height: 14px;  /* Regular size */
-  border: 2px solid #FF6B99; /* Outer border color */
-  border-radius: 50%; /* Circular shape */
-  background-color: white; /* White inner area by default */
-  cursor: pointer;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-/* Checked state */
-.custom-radio:checked {
-  border-color: #FF6B99; /* Border color when checked */
-}
-
-/* Inner circle when checked */
-.custom-radio:checked::after {
-  content: "";
-  width: 8px; /* Smaller inner circle size */
-  height: 8px; /* Smaller inner circle size */
-  background-color: #FF6B99; /* Inner circle color */
-  border-radius: 50%; /* Circular shape */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Center the inner circle */
-}
-
-
-
   </style>
 </head>
 <body>
@@ -246,20 +230,18 @@
     <!-- Header -->
     <div class="header">YAY! It's BOGO</div>
 
-    <!-- 1 Unit Option -->
+    <!-- Offer Options -->
     <div class="option">
-      <input type="radio" name="offer"  class="custom-radio" checked>
+      <input type="radio" name="offer" data-price="10" class="custom-radio" checked>
       <div class="offer-header">
         <div class="offer-title">1 Unit <span class="badge">10% Off</span></div>
         <div class="price">$10.00 USD <div class="old-price">$24.00 USD</div></div>
       </div>
-      <div style="margin-left: 30px; font-size: 0.8rem; color: #666;">Standard Price</div>
     </div>
 
-    <!-- 2 Unit Option -->
-    <div class="option active">
-      <input type="radio" name="offer" class="custom-radio">
-      <div class="most-popular">MOST POPULAR</div>
+    <div class="option">
+      <input type="radio" name="offer" data-price="18" class="custom-radio">
+         <div class="most-popular">MOST POPULAR</div>
       <div class="offer-header">
         <div class="offer-title">2 Unit <span class="badge">20% Off</span></div>
         <div class="price" style="margin-top: 1%;">$18.00 USD <div class="old-price">$24.00 USD</div></div>
@@ -299,10 +281,11 @@
         </div>
       </div>
     </div>
-
-    <!-- 3 Unit Option -->
+	
+	
+	  <!-- 3 Unit Option -->
     <div class="option">
-      <input type="radio" name="offer" class="custom-radio">
+      <input type="radio" name="offer" data-price="24"  class="custom-radio">
       <div class="offer-header">
         <div class="offer-title">3 Unit <span class="badge">30% Off</span></div>
         <div class="price">$24.00 USD <div class="old-price">$24.00 USD</div></div>
@@ -312,12 +295,24 @@
     <!-- Footer -->
     <div class="footer">
       <div class="free-delivery">Free Delivery</div>
-      <div class="total">Total : $18.00 USD</div>
+      <div id="total" class="total">Total: $10.00</div>
     </div>
 
     <!-- Add to Cart -->
     <button class="add-to-cart">+ Add to Cart</button>
     <div class="powered-by">@ Powered by Pumper</div>
   </div>
+
+  <script>
+    const options = document.querySelectorAll('input[name="offer"]');
+    const totalDisplay = document.getElementById('total');
+
+    options.forEach(option => {
+      option.addEventListener('change', () => {
+        const price = option.dataset.price;
+        totalDisplay.textContent = `Total: $${price}.00`;
+      });
+    });
+  </script>
 </body>
 </html>
