@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOGO Offer </title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .bogo-container {
+      background-color: #fff;
+      border-radius: 10px;
+      width: 400px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Header */
+      .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #ff66a6;
+      margin: 20px auto;
+      position: relative;
+      width: 100%;
+    }
+
+    .header::before,
+    .header::after {
+      content: '';
+      width: calc(30% - 30px); 
+      height: 1px;
+      background-color: #ccc;
+      margin: 0 10px;
+    }
+
+    /* Options Styling */
+    .option {
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      padding: 10px;
+      position: relative;
+      transition: border-color 0.3s ease;
+    }
+
+    .option input[type="radio"] {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      accent-color: #ff6b99;
+      transform: scale(1.2);
+    }
+
+    .option.active {
+      border-color: #ff6b99;
+    }
+
+    .offer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-left: 30px;
+    }
+
+    .offer-title {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .badge {
+      background: #ff6b99;
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 2px 5px;
+      border-radius: 3px;
+      margin-left: 5px;
+    }
+
+    .price {
+      text-align: right;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+	  text-align: left;
+      color: #aaa;
+      font-size: 0.8rem;
+    }
+
+    /* Most Popular Tag */
+
+	
+	.most-popular {
+  position: absolute; /* Position it relative to its container */
+  top: -10px; /* Adjust to float above the box */
+  right: 10px; /* Align to the right side */
+  background-color: #ff6b82; /* Background color */
+  color: white; /* Text color */
+  font-size: 10px; /* Adjust font size */
+  font-weight: bold;
+  padding: 5px 10px; /* Add padding for better spacing */
+  border-radius: 5px 5px 0 0; /* Top rounded corners */
+  line-height: 1; /* Compact line height */
+  text-transform: uppercase; /* Capitalize text */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+}
+
+/* Add a triangular cut effect on the bottom */
+.most-popular::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: white; /* Matches background to create cut effect */
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+}
+
+
+    /* Size and Colour Dropdowns */
+    .sizes {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+      margin-left: 30px;
+    }
+
+    .size-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .size-row label {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #333;
+      width: 30px;
+    }
+
+    .size-row select {
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+	  width:20%;
+    }
+
+    /* Footer Section */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+	  margin-bottom: 15px;
+    }
+
+    .free-delivery {
+      color: #ff6b99;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .total {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    /* Add to Cart Button */
+    .add-to-cart {
+      background: #ff6b99;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 1rem;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .add-to-cart:hover {
+      background: #ff4f80;
+    }
+
+    .powered-by {
+      text-align: right;
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+	
+	/* Style the custom radio button */
+/* Custom Radio Button */
+.custom-radio {
+  appearance: none; /* Remove default styling */
+  width: 14px;  /* Regular size */
+  height: 14px;  /* Regular size */
+  border: 2px solid #FF6B99; /* Outer border color */
+  border-radius: 50%; /* Circular shape */
+  background-color: white; /* White inner area by default */
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Checked state */
+.custom-radio:checked {
+  border-color: #FF6B99; /* Border color when checked */
+}
+
+/* Inner circle when checked */
+.custom-radio:checked::after {
+  content: "";
+  width: 8px; /* Smaller inner circle size */
+  height: 8px; /* Smaller inner circle size */
+  background-color: #FF6B99; /* Inner circle color */
+  border-radius: 50%; /* Circular shape */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the inner circle */
+}
+
+
+
+  </style>
+</head>
+<body>
+  <div class="bogo-container">
+    <!-- Header -->
+    <div class="header">YAY! It's BOGO</div>
+
+    <!-- 1 Unit Option -->
+    <div class="option">
+      <input type="radio" name="offer"  class="custom-radio" checked>
+      <div class="offer-header">
+        <div class="offer-title">1 Unit <span class="badge">10% Off</span></div>
+        <div class="price">$10.00 USD <div class="old-price">$24.00 USD</div></div>
+      </div>
+      <div style="margin-left: 30px; font-size: 0.8rem; color: #666;">Standard Price</div>
+    </div>
+
+    <!-- 2 Unit Option -->
+    <div class="option active">
+      <input type="radio" name="offer" class="custom-radio">
+      <div class="most-popular">MOST POPULAR</div>
+      <div class="offer-header">
+        <div class="offer-title">2 Unit <span class="badge">20% Off</span></div>
+        <div class="price" style="margin-top: 1%;">$18.00 USD <div class="old-price">$24.00 USD</div></div>
+      </div>
+      <!-- Sizes -->
+      <div class="sizes">
+	  <div class="size-row">
+	     <label style="font-weight: normal; font-size: 0.9rem; color: #555;"></label>
+		   <label style="font-weight: normal; font-size: 0.9rem; color: #555;width: 20%;">Size</label>
+		    <label style="font-weight: normal; font-size: 0.9rem; color: #555;">Colour</label>
+	  </div>
+        <div class="size-row">
+          <label>#1</label>
+          <select>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+          <select>
+            <option>Black</option>
+            <option>Red</option>
+            <option>Blue</option>
+          </select>
+        </div>
+        <div class="size-row">
+          <label>#2</label>
+          <select>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+          <select>
+            <option>Black</option>
+            <option>Red</option>
+            <option>Blue</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Unit Option -->
+    <div class="option">
+      <input type="radio" name="offer" class="custom-radio">
+      <div class="offer-header">
+        <div class="offer-title">3 Unit <span class="badge">30% Off</span></div>
+        <div class="price">$24.00 USD <div class="old-price">$24.00 USD</div></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="free-delivery">Free Delivery</div>
+      <div class="total">Total : $18.00 USD</div>
+    </div>
+
+    <!-- Add to Cart -->
+    <button class="add-to-cart">+ Add to Cart</button>
+    <div class="powered-by">@ Powered by Pumper</div>
+  </div>
+</body>
+</html>
